@@ -1,4 +1,4 @@
-name: Log in With Reddit JS
+name: Javascript
 
 on: [workflow_dispatch, push, pull_request]
 
