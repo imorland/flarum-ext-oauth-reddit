@@ -1,0 +1,56 @@
+{
+    "name": "ianm/oauth-reddit",
+    "description": "Reddit oauth provider for Flarum",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": "^1.2.0",
+        "fof/oauth": "^1.3"
+    },
+    "authors": [
+        {
+            "name": "IanM",
+            "email": "ian@morland.me",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IanM\\OauthReddit\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Log in With Reddit",
+            "category": "",
+            "icon": {
+                "name": "fab fa-reddit",
+                "color": "#fff",
+                "backgroundColor": "#FF5700"
+            }
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": true,
+                "forum": true,
+                "js": true,
+                "jsCommon": true,
+                "css": true,
+                "locale": true,
+                "gitConf": true,
+                "githubActions": true,
+                "prettier": true,
+                "typescript": true,
+                "bundlewatch": false,
+                "backendTesting": true,
+                "editorConfig": true,
+                "styleci": true
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
