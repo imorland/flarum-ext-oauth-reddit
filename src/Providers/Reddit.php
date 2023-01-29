@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ianm/oauth-reddit.
+ *
+ * Copyright (c) 2023 IanM.
+ *
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace IanM\OauthReddit\Providers;
 
 use Flarum\Forum\Auth\Registration;
@@ -38,7 +47,7 @@ class Reddit extends Provider
             'clientId'     => $this->getSetting('client_id'),
             'clientSecret' => $this->getSetting('client_secret'),
             'redirectUri'  => $redirectUri,
-            'userAgent'     => 'Flarum:FoF-OAuth:' . Application::VERSION . ' (by /u/Background_Stress252)',
+            'userAgent'     => 'Flarum:FoF-OAuth:'.Application::VERSION.' (by /u/Background_Stress252)',
         ]);
     }
 

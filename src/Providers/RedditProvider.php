@@ -1,14 +1,23 @@
 <?php
 
+/*
+ * This file is part of ianm/oauth-reddit.
+ *
+ * Copyright (c) 2023 IanM.
+ *
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace IanM\OauthReddit\Providers;
 
 use InvalidArgumentException;
 use League\OAuth2\Client\Provider\AbstractProvider;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use Psr\Http\Message\ResponseInterface as Response;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
-use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 class RedditProvider extends AbstractProvider
 {
@@ -16,23 +25,23 @@ class RedditProvider extends AbstractProvider
 
     /**
      * User agent string required by Reddit
-     * Format <platform>:<app ID>:<version string> (by /u/<reddit username>)
+     * Format <platform>:<app ID>:<version string> (by /u/<reddit username>).
      *
      * @see https://github.com/reddit/reddit/wiki/API
      */
-    public $userAgent = "";
+    public $userAgent = '';
 
     /**
      * {@inheritDoc}
      */
-    public $authorizationHeader = "bearer";
+    public $authorizationHeader = 'bearer';
 
     /**
      * {@inheritDoc}
      */
     public function getBaseAuthorizationUrl()
     {
-        return "https://ssl.reddit.com/api/v1/authorize";
+        return 'https://ssl.reddit.com/api/v1/authorize';
     }
 
     /**
@@ -40,7 +49,7 @@ class RedditProvider extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return "https://ssl.reddit.com/api/v1/access_token";
+        return 'https://ssl.reddit.com/api/v1/access_token';
     }
 
     /**
@@ -48,7 +57,7 @@ class RedditProvider extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return "https://oauth.reddit.com/api/v1/me";
+        return 'https://oauth.reddit.com/api/v1/me';
     }
 
     public function getDefaultScopes()
@@ -87,7 +96,8 @@ class RedditProvider extends AbstractProvider
             throw new IdentityProviderException(
                 $this->parseErrorMessage($data),
                 $response->getStatusCode(),
-                $response);
+                $response
+            );
         }
     }
 
@@ -103,18 +113,17 @@ class RedditProvider extends AbstractProvider
         }
 
         // Use the server user agent as a fallback if no explicit one was set.
-        return $_SERVER["HTTP_USER_AGENT"];
+        return $_SERVER['HTTP_USER_AGENT'];
     }
-
 
     /**
      * Validates that the user agent follows the Reddit API guide.
-     * Pattern: <platform>:<app ID>:<version string> (by /u/<reddit username>)
+     * Pattern: <platform>:<app ID>:<version string> (by /u/<reddit username>).
      */
     protected function validateUserAgent()
     {
-        if ( ! preg_match("~^.+:.+:.+ \(by /u/.+\)$~", $this->getUserAgent())) {
-            throw new InvalidArgumentException("User agent is not valid");
+        if (! preg_match("~^.+:.+:.+ \(by /u/.+\)$~", $this->getUserAgent())) {
+            throw new InvalidArgumentException('User agent is not valid');
         }
     }
 
@@ -126,13 +135,13 @@ class RedditProvider extends AbstractProvider
         $this->validateUserAgent();
 
         $headers = [
-            "User-Agent" => $this->getUserAgent(),
+            'User-Agent' => $this->getUserAgent(),
         ];
 
         // We have to use HTTP Basic Auth when requesting an access token
-        if ( ! $token) {
+        if (! $token) {
             $auth = base64_encode("{$this->clientId}:{$this->clientSecret}");
-            $headers["Authorization"] = "Basic $auth";
+            $headers['Authorization'] = "Basic $auth";
         }
 
         return array_merge(parent::getHeaders($token), $headers);
@@ -147,7 +156,7 @@ class RedditProvider extends AbstractProvider
     {
         // Allow Reddit-specific 'installed_client' to be specified as a string,
         // keeping consistent with the other grant types.
-        if ($grant === "installed_client") {
+        if ($grant === 'installed_client') {
             $grant = new InstalledClient();
         }
 
