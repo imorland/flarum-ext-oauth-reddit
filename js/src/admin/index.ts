@@ -3,5 +3,5 @@ import app from 'flarum/admin/app';
 import { ConfigureWithOAuthPage } from '@fof-oauth'; // @TODO: import from `ext:vendor/extension/module-path` format.
 
 app.initializers.add('ianm/oauth-reddit', () => {
-  app.extensionData.for('ianm-oauth-reddit').registerPage(ConfigureWithOAuthPage);
+  app.registry.for('ianm-oauth-reddit').registerPage(ConfigureWithOAuthPage);
 });
