@@ -29,12 +29,12 @@ class RedditProvider extends AbstractProvider
      *
      * @see https://github.com/reddit/reddit/wiki/API
      */
-    public $userAgent = '';
+    public string $userAgent = '';
 
     /**
      * {@inheritDoc}
      */
-    public $authorizationHeader = 'bearer';
+    public string $authorizationHeader = 'bearer';
 
     /**
      * {@inheritDoc}
@@ -73,7 +73,10 @@ class RedditProvider extends AbstractProvider
         return new RedditResourceOwner($response);
     }
 
-    private function parseErrorMessage($data)
+    /**
+     * @param array<string, mixed> $data
+     */
+    private function parseErrorMessage(array $data): string
     {
         if (isset($data['error_description'])) {
             return $data['error_description'];
@@ -120,7 +123,7 @@ class RedditProvider extends AbstractProvider
      * Validates that the user agent follows the Reddit API guide.
      * Pattern: <platform>:<app ID>:<version string> (by /u/<reddit username>).
      */
-    protected function validateUserAgent()
+    protected function validateUserAgent(): void
     {
         if (! preg_match("~^.+:.+:.+ \(by /u/.+\)$~", $this->getUserAgent())) {
             throw new InvalidArgumentException('User agent is not valid');

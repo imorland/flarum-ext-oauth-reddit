@@ -20,8 +20,7 @@ class RedditResourceOwner implements ResourceOwnerInterface
 
     /**
      * Creates new resource owner.
-     *
-    
+     */
     public function __construct(protected array $response)
     {
     }
