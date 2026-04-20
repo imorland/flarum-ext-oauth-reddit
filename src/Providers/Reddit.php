@@ -51,6 +51,11 @@ class Reddit extends Provider
         ]);
     }
 
+    public function pkceEnabled(): bool
+    {
+        return false;
+    }
+
     public function options(): array
     {
         return [
@@ -58,7 +63,7 @@ class Reddit extends Provider
         ];
     }
 
-    public function suggestions(Registration $registration, $user, string $token)
+    public function suggestions(Registration $registration, mixed $user, string $token): void
     {
         /** @var RedditResourceOwner $user */
         $registration

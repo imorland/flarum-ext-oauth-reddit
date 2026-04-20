@@ -1,3 +1,1 @@
-module.exports = require('flarum-webpack-config')({
-    useExtensions: ['fof-oauth'],
-});
+module.exports = require('flarum-webpack-config')({});
