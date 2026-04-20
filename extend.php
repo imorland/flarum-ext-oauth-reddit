@@ -23,5 +23,5 @@ return [
 
     new Extend\Locales(__DIR__.'/locale'),
 
-    (new OAuthExtend\RegisterProvider(Providers\Reddit::class)),
+    new OAuthExtend\RegisterProvider(Providers\Reddit::class),
 ];

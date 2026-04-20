@@ -36,7 +36,7 @@ class Reddit extends Provider
     public function fields(): array
     {
         return [
-            'client_id'     => 'required',
+            'client_id' => 'required',
             'client_secret' => 'required',
         ];
     }
@@ -44,10 +44,10 @@ class Reddit extends Provider
     public function provider(string $redirectUri): AbstractProvider
     {
         return $this->provider = new RedditProvider([
-            'clientId'     => $this->getSetting('client_id'),
+            'clientId' => $this->getSetting('client_id'),
             'clientSecret' => $this->getSetting('client_secret'),
-            'redirectUri'  => $redirectUri,
-            'userAgent'     => 'Flarum:FoF-OAuth:'.Application::VERSION.' (by /u/Background_Stress252)',
+            'redirectUri' => $redirectUri,
+            'userAgent' => 'Flarum:FoF-OAuth:'.Application::VERSION.' (by /u/Background_Stress252)',
         ]);
     }
 
