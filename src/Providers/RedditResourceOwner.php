@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace IanM\OAuthReddit\Providers;
+namespace IanM\OauthReddit\Providers;
 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Tool\ArrayAccessorTrait;
