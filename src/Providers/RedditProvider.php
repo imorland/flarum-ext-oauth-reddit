@@ -41,7 +41,7 @@ class RedditProvider extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return 'https://ssl.reddit.com/api/v1/authorize';
+        return 'https://www.reddit.com/api/v1/authorize';
     }
 
     /**
@@ -49,7 +49,7 @@ class RedditProvider extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return 'https://ssl.reddit.com/api/v1/access_token';
+        return 'https://www.reddit.com/api/v1/access_token';
     }
 
     /**
