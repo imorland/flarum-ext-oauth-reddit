@@ -4,8 +4,6 @@
 
 A [Flarum](http://flarum.org) extension. Reddit oauth provider for Flarum
 
-![](https://extiverse.com/extension/ianm/oauth-reddit/open-graph-image)
-
 ## Features
 
 Adds a `Reddit` provider to [FoF OAuth](https://github.com/FriendsOfFlarum/oauth) to enable `Login with Reddit` functionality.
