@@ -74,4 +74,10 @@ class Reddit extends Provider
             $registration->provideAvatar($picture);
         }
     }
+
+    public function getProviderVerifiedEmail(mixed $user, string $token): ?string
+    {
+        // Reddit's API never exposes the user's email address, so there is nothing to verify or sync.
+        return null;
+    }
 }
